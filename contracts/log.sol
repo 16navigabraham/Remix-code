@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 contract Logger {
     event Deposit(address sender, uint256 amount);
 
-    function logDeposit(uint256 _amount) internal virtual {
+    function logDeposit(uint256 _amount) public virtual {
         emit Deposit(msg.sender, _amount);
     }
 }
@@ -19,7 +19,7 @@ contract Wallet is Logger {
     }
 
     // 4. Override Logic
-    function logDeposit(uint256 _amount) internal override {
+    function logDeposit(uint256 _amount) public override {
         // We added a check that the parent didn't have
         require(_amount > 0, "Don't log empty tx");
         
